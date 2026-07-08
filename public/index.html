@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VERTEX Shopping</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="VERTEX home">
+        <span class="brand-mark">V</span>
+        <span>VERTEX</span>
+      </a>
+      <label class="search">
+        <span>Search</span>
+        <input id="searchInput" type="search" placeholder="Search electronics, fashion, lifestyle">
+      </label>
+      <nav class="nav">
+        <button class="icon-btn active" data-view="home" title="Home" aria-label="Home">⌂</button>
+        <button class="icon-btn" data-view="orders" title="Orders" aria-label="Orders">▣</button>
+        <button class="icon-btn admin-only hidden" data-view="admin" title="Admin dashboard" aria-label="Admin dashboard">◆</button>
+        <button class="cart-button" id="cartButton" title="Cart" aria-label="Cart">
+          🛒 <span id="cartCount">0</span>
+        </button>
+        <button class="account-button" id="accountButton">Login</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="homeView">
+        <div class="hero-copy">
+          <p class="eyebrow">Shop smarter. Ship faster.</p>
+          <h1>VERTEX</h1>
+          <p>Premium electronics, style essentials, and everyday gear in a fast shopping experience built for real users.</p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#catalog">Shop deals</a>
+            <button class="secondary-link" id="openRegister">Create account</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="catalog-section" id="catalog">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Live catalog</p>
+            <h2>Featured products</h2>
+          </div>
+          <div class="filters" role="tablist" aria-label="Product categories">
+            <button class="filter active" data-category="All">All</button>
+            <button class="filter" data-category="Electronics">Electronics</button>
+            <button class="filter" data-category="Fashion">Fashion</button>
+            <button class="filter" data-category="Lifestyle">Lifestyle</button>
+          </div>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+      </section>
+
+      <section class="orders-view hidden" id="ordersView">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Account</p>
+            <h2>Your orders</h2>
+          </div>
+        </div>
+        <div id="ordersList" class="list-surface"></div>
+      </section>
+
+      <section class="admin-view hidden" id="adminView">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Owner view</p>
+            <h2>User data and orders</h2>
+          </div>
+          <button class="secondary-link" id="refreshAdmin">Refresh</button>
+        </div>
+        <div class="stats" id="adminStats"></div>
+        <div class="admin-grid">
+          <div>
+            <h3>Registered users</h3>
+            <div id="adminUsers" class="list-surface"></div>
+          </div>
+          <div>
+            <h3>Orders</h3>
+            <div id="adminOrders" class="list-surface"></div>
+          </div>
+          <div>
+            <h3>Messages</h3>
+            <div id="adminMessages" class="list-surface"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-band">
+        <div>
+          <p class="eyebrow">Need help?</p>
+          <h2>Contact VERTEX</h2>
+        </div>
+        <form id="contactForm" class="contact-form">
+          <input name="name" placeholder="Name" required>
+          <input name="email" type="email" placeholder="Email" required>
+          <input name="phone" placeholder="Phone">
+          <textarea name="message" placeholder="Message" required></textarea>
+          <button class="primary-link" type="submit">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <aside class="drawer" id="cartDrawer" aria-hidden="true">
+      <div class="drawer-panel">
+        <div class="drawer-head">
+          <h2>Your cart</h2>
+          <button class="icon-btn" id="closeCart" aria-label="Close cart">×</button>
+        </div>
+        <div id="cartItems" class="cart-items"></div>
+        <form id="checkoutForm" class="checkout-form">
+          <input name="address" placeholder="Delivery address" required>
+          <select name="paymentMethod" required>
+            <option value="">Payment method</option>
+            <option>Cash on delivery</option>
+            <option>UPI</option>
+            <option>Card</option>
+          </select>
+          <textarea name="note" placeholder="Delivery note"></textarea>
+          <button class="primary-link" type="submit">Place order</button>
+        </form>
+      </div>
+    </aside>
+
+    <dialog id="authDialog" class="auth-dialog">
+      <form method="dialog" class="dialog-close-row">
+        <button class="icon-btn" aria-label="Close">×</button>
+      </form>
+      <div class="auth-layout">
+        <div class="auth-panel">
+          <p class="eyebrow">Welcome back</p>
+          <h2>Login</h2>
+          <form id="loginForm" class="auth-form">
+            <input name="email" type="email" placeholder="Email" required>
+            <input name="password" type="password" placeholder="Password" required>
+            <button class="primary-link" type="submit">Login</button>
+          </form>
+          <p class="hint">Owner: admin@vertex.local / admin123</p>
+        </div>
+        <div class="auth-panel register-panel">
+          <p class="eyebrow">New customer</p>
+          <h2>Register</h2>
+          <form id="registerForm" class="auth-form">
+            <input name="name" placeholder="Full name" required>
+            <input name="email" type="email" placeholder="Email" required>
+            <input name="phone" placeholder="Phone" required>
+            <input name="address" placeholder="Address">
+            <input name="password" type="password" placeholder="Password" minlength="6" required>
+            <button class="secondary-link" type="submit">Create account</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
