@@ -1,0 +1,12 @@
+{
+  "name": "vertex-shopping-app",
+  "version": "1.0.0",
+  "description": "VERTEX shopping website with registration, login, cart, orders, and admin dashboard.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
